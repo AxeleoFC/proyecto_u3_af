@@ -21,9 +21,18 @@ public class HotelRepositoyrImpl implements IHotelRrepository {
 	public List<Hotel> buacarHotelInnerJoin(String tipoHabitacion) {
 		// TODO Auto-generated method stub
 		//h.habitaciones es la referencia a la entidad Habitacion
-		TypedQuery<Hotel> myQuery = this.entitumanager.createQuery("SELECT h FROM Hotel h JOIN h.habitaciones ha WHERE ha.tipo= :tipoHabitacion", Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entitumanager.createQuery("SELECT h FROM Hotel h INNER JOIN h.habitaciones ha WHERE ha.tipo= :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
-		return myQuery.getResultList();
+		
+		//Uso con EAGER
+		//return myQuery.getResultList();
+		
+		//Uso con LAZY
+		List<Hotel> hoteles =myQuery.getResultList();
+		for(Hotel h: hoteles) {
+			h.getHabitaciones().size();
+		}
+		return hoteles;
 	}
 
 	@Override
@@ -67,8 +76,10 @@ public class HotelRepositoyrImpl implements IHotelRrepository {
 	@Override
 	public List<Hotel> buacarHotelJoinFetch(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entitumanager.createQuery("SELECT h FROM Hotel h JOIN h.habitaciones ha WHERE ha.tipo= :tipoHabitacion", Hotel.class);
+		//JOIN FETCH
+		TypedQuery<Hotel> myQuery = this.entitumanager.createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo= :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
+				
 		return myQuery.getResultList();
 	}
 

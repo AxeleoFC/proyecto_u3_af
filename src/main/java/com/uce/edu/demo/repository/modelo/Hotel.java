@@ -2,8 +2,10 @@ package com.uce.edu.demo.repository.modelo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,13 +32,12 @@ public class Hotel {
 	//Relacion de uno a muchos
 	//El cascade solo usar si se va a insertar los objetos tambien en el mismo momento
 	/*, cascade = CascadeType.ALL*/
-	@OneToMany(mappedBy = "hotel")
+	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Habitacion> habitaciones;
 
 	@Override
 	public String toString() {
-		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", habitaciones=" + habitaciones
-				+ "]";
+		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion;
 	}
 
 	//SET y GET

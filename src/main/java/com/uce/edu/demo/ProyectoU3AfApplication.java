@@ -28,29 +28,27 @@ public class ProyectoU3AfApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		//Inner Join
-		LOG.info("Inner Join con parametros");
-		List<Hotel> listaHoteles = this.hotelService.buacarHotelInnerJoin("Matrimonial");
+		//Join WHERE
+		LOG.info("Join WHERE");
+		List<Hotel> listaHoteles = this.hotelService.buacarHotelJoinWhere("Matrimonial");
 		listaHoteles.stream().forEach(hotel -> {LOG.info("Hotel: "+hotel.getNombre()+" Direccion: "+hotel.getDireccion());});
 		
-		LOG.info("Inner Join sin parametros");
+		LOG.info("Inner Join EAGER/LAZY");
 		listaHoteles.removeAll(listaHoteles);
-		listaHoteles = this.hotelService.buacarHotelInnerJoin();
-		listaHoteles.stream().forEach(hotel -> {LOG.info("Hotel: "+hotel.getNombre()+" Direccion: "+hotel.getDireccion());});
+		listaHoteles = this.hotelService.buacarHotelInnerJoin("Familiar");
+		for(Hotel hotel: listaHoteles) {
+			LOG.info("Hotel: "+hotel.getNombre()+" Direccion: "+hotel.getDireccion());
+			LOG.info("Habitacion: "+hotel.getHabitaciones());
+		}
 		
-		//Left Join
-		LOG.info("Left Join con parametros");
-		listaHoteles = this.hotelService.buacarHotelOuterJoinLeft("Matrimonial");
-		listaHoteles.stream().forEach(hotel -> {LOG.info("Hotel: "+hotel.getNombre()+" Direccion: "+hotel.getDireccion());});
-		
-		LOG.info("Left Join sin parametros");
-		listaHoteles = this.hotelService.buacarHotelOuterJoinLeft();
-		listaHoteles.stream().forEach(hotel -> {LOG.info("Hotel: "+hotel.getNombre()+" Direccion: "+hotel.getDireccion());});
-		
-		//Right join
-		LOG.info("Right Join");
-		listaHoteles = this.hotelService.buacarHotelOuterJoinRight("Matrimonial");
-		listaHoteles.stream().forEach(hotel -> {LOG.info("Hotel: "+hotel.getNombre()+" Direccion: "+hotel.getDireccion());});
+		//Join Fetch
+		LOG.info("Join Fetch");
+		listaHoteles.removeAll(listaHoteles);
+		listaHoteles = this.hotelService.buacarHotelJoinFetch("Familiar");
+		for(Hotel hotel: listaHoteles) {
+			LOG.info("Hotel: "+hotel.getNombre()+" Direccion: "+hotel.getDireccion());
+			LOG.info("Habitacion: "+hotel.getHabitaciones());
+		}
 		
 	}
 
