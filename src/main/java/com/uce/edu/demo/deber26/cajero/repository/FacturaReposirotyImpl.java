@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.deber26.cajero.repository.modelo.Factura;
+import com.uce.edu.demo.repository.modelo.Hotel;
 
 @Repository
 @Transactional
@@ -35,7 +36,15 @@ public class FacturaReposirotyImpl implements IFacturaRepository {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f INNER JOIN f.detalles d WHERE d.cantidad >= :datoCantidad", Factura.class);
 		myQuery.setParameter("datoCantidad", cantidad);
-		return myQuery.getResultList();
+		//return myQuery.getResultList();
+		
+		//Uso con LAZY
+		List<Factura> facturas = myQuery.getResultList();
+		for (Factura f : facturas) {
+			f.getDetalles().size();
+		}
+		return facturas;
+		
 	}
 
 	@Override
@@ -64,6 +73,22 @@ public class FacturaReposirotyImpl implements IFacturaRepository {
 	public List<Factura> buacarFacturaOuterJoinRight(Integer cantidad) {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f RIGHT JOIN f.detalles d WHERE d.cantidad >= :datoCantidad", Factura.class);
+		myQuery.setParameter("datoCantidad", cantidad);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Factura> buacarFacturaJoinWhere(Integer cantidad) {
+		// TODO Auto-generated method stub
+		TypedQuery<Factura> myQuery=this.entityManager.createQuery("SELECT f FROM Factura f, Detalle d WHERE f=d.factura AND d.cantidad >= :datoCantidad", Factura.class);
+		myQuery.setParameter("datoCantidad", cantidad);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Factura> buacarFacturaJoinFetch(Integer cantidad) {
+		// TODO Auto-generated method stub
+		TypedQuery<Factura> myQuery=this.entityManager.createQuery("SELECT f FROM Factura f JOIN FETCH f.detalles d WHERE d.cantidad >= :datoCantidad", Factura.class);
 		myQuery.setParameter("datoCantidad", cantidad);
 		return myQuery.getResultList();
 	}

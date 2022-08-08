@@ -18,7 +18,7 @@ public interface IFacturaRepository {
 	public List<Factura> buacarFacturaOuterJoinRight(Integer cantidad);
 	
 	//Deber 27
-	/*
-	public List<Factura> buacarHotelJoinWhere(String tipoHabitacion);
-	public List<Factura> buacarHotelJoinFetch(String tipoHabitacion);*/
+	
+	public List<Factura> buacarFacturaJoinWhere(Integer cantidad);
+	public List<Factura> buacarFacturaJoinFetch(Integer cantidad);
 }

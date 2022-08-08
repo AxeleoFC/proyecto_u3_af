@@ -17,4 +17,9 @@ public interface IFacturaService {
 	public List<Factura> buacarFacturaOuterJoinLeft();
 	public List<Factura> buacarFacturaOuterJoinRight(Integer cantidad);
 
+	//Deber 27
+
+	public List<Factura> buacarFacturaJoinWhere(Integer cantidad);
+
+	public List<Factura> buacarFacturaJoinFetch(Integer cantidad);
 }

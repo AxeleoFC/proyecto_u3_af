@@ -30,39 +30,29 @@ public class ProyectoU3AfApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		// Inner Join
-		LOG.info("Inner Join con parametros");
-		List<Factura> listaFacturas = this.facturaService.buacarFacturaInnerJoin(1);
+		// Join WHERE
+		LOG.info("Join WHERE");
+		List<Factura> listaFacturas = this.facturaService.buacarFacturaJoinWhere(2);
 		listaFacturas.stream().forEach(factura -> {
 			LOG.info("Factura: " + factura.getNumero() + " Fecha: " + factura.getFecha());
 		});
 
-		LOG.info("Inner Join sin parametros");
+		LOG.info("Inner Join EAGER/LAZY");
 		listaFacturas.removeAll(listaFacturas);
-		listaFacturas = this.facturaService.buacarFacturaInnerJoin();
-		listaFacturas.stream().forEach(factura -> {
-			LOG.info("Factura: " + factura.getNumero() + " Fecha: " + factura.getFecha());
-		});;
+		listaFacturas = this.facturaService.buacarFacturaInnerJoin(1);
+		for (Factura factura : listaFacturas) {
+			LOG.info("Hotel: " + factura.getNumero() + " Fecha: " + factura.getFecha());
+			LOG.info("Detalle: " + factura.getDetalles());
+		}
 
-		// Left Join
-		LOG.info("Left Join con parametros");
-		listaFacturas = this.facturaService.buacarFacturaOuterJoinLeft(1);
-		listaFacturas.stream().forEach(factura -> {
-			LOG.info("Factura: " + factura.getNumero() + " Fecha: " + factura.getFecha());
-		});;
-
-		LOG.info("Left Join sin parametros");
-		listaFacturas = this.facturaService.buacarFacturaOuterJoinLeft();
-		listaFacturas.stream().forEach(factura -> {
-			LOG.info("Factura: " + factura.getNumero() + " Fecha: " + factura.getFecha());
-		});;
-
-		// Right join
-		LOG.info("Right Join");
-		listaFacturas = this.facturaService.buacarFacturaOuterJoinRight(1);
-		listaFacturas.stream().forEach(factura -> {
-			LOG.info("Factura: " + factura.getNumero() + " Fecha: " + factura.getFecha());
-		});;
+		// Join Fetch
+		LOG.info("Join Fetch");
+		listaFacturas.removeAll(listaFacturas);
+		listaFacturas = this.facturaService.buacarFacturaJoinFetch(1);
+		for (Factura factura : listaFacturas) {
+			LOG.info("Hotel: " + factura.getNumero() + " Fecha: " + factura.getFecha());
+			LOG.info("Detalle: " + factura.getDetalles());
+		}
 
 	}
 
