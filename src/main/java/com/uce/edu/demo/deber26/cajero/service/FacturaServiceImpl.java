@@ -26,45 +26,45 @@ public class FacturaServiceImpl implements IFacturaService {
 	}
 
 	@Override
-	public List<Factura> buacarFacturaInnerJoin(Integer cantidad) {
+	public List<Factura> buscarFacturaInnerJoin(Integer cantidad) {
 		// TODO Auto-generated method stub
-		return this.facturaRepo.buacarFacturaInnerJoin(cantidad);
+		return this.facturaRepo.buscarFacturaInnerJoin(cantidad);
 	}
 
 	@Override
-	public List<Factura> buacarFacturaInnerJoin() {
+	public List<Factura> buscarFacturaInnerJoin() {
 		// TODO Auto-generated method stub
-		return this.facturaRepo.buacarFacturaInnerJoin();
+		return this.facturaRepo.buscarFacturaInnerJoin();
 	}
 
 	@Override
-	public List<Factura> buacarFacturaOuterJoinLeft(Integer cantidad) {
+	public List<Factura> buscarFacturaOuterJoinLeft(Integer cantidad) {
 		// TODO Auto-generated method stub
-		return this.facturaRepo.buacarFacturaOuterJoinLeft(cantidad);
+		return this.facturaRepo.buscarFacturaOuterJoinLeft(cantidad);
 	}
 
 	@Override
-	public List<Factura> buacarFacturaOuterJoinLeft() {
+	public List<Factura> buscarFacturaOuterJoinLeft() {
 		// TODO Auto-generated method stub
-		return this.facturaRepo.buacarFacturaOuterJoinLeft();
+		return this.facturaRepo.buscarFacturaOuterJoinLeft();
 	}
 
 	@Override
-	public List<Factura> buacarFacturaOuterJoinRight(Integer cantidad) {
+	public List<Factura> buscarFacturaOuterJoinRight(Integer cantidad) {
 		// TODO Auto-generated method stub
-		return this.facturaRepo.buacarFacturaOuterJoinRight(cantidad);
+		return this.facturaRepo.buscarFacturaOuterJoinRight(cantidad);
 	}
 
 	@Override
 	public List<Factura> buacarFacturaJoinWhere(Integer cantidad) {
 		// TODO Auto-generated method stub
-		return this.facturaRepo.buacarFacturaJoinWhere(cantidad);
+		return this.facturaRepo.buscarFacturaJoinWhere(cantidad);
 	}
 
 	@Override
 	public List<Factura> buacarFacturaJoinFetch(Integer cantidad) {
 		// TODO Auto-generated method stub
-		return this.facturaRepo.buacarFacturaJoinFetch(cantidad);
+		return this.facturaRepo.buscarFacturaJoinFetch(cantidad);
 	}
 
 }

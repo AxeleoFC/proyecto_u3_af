@@ -7,5 +7,8 @@ public interface ITransferenciaService {
 	public void realizarTransferencia(String numeroOrigen, String numeroaDestino, BigDecimal monto);
 	
 	public void realizarTransferenciaFachada(String numeroOrigen, String numeroaDestino, BigDecimal monto);
+	
+	//Trabajo grupal
+	public void realizarTransferenciaOtroBanco(String numeroOrigen, String numeroDestino, BigDecimal monto);
 
 }

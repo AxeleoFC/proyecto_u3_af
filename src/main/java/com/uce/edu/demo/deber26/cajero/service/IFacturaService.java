@@ -10,12 +10,12 @@ public interface IFacturaService {
 	public Factura consultar(Integer id);
 	
 	//Deber 26
-	public List<Factura> buacarFacturaInnerJoin(Integer cantidad);
-	public List<Factura> buacarFacturaInnerJoin();
+	public List<Factura> buscarFacturaInnerJoin(Integer cantidad);
+	public List<Factura> buscarFacturaInnerJoin();
 		
-	public List<Factura> buacarFacturaOuterJoinLeft(Integer cantidad);
-	public List<Factura> buacarFacturaOuterJoinLeft();
-	public List<Factura> buacarFacturaOuterJoinRight(Integer cantidad);
+	public List<Factura> buscarFacturaOuterJoinLeft(Integer cantidad);
+	public List<Factura> buscarFacturaOuterJoinLeft();
+	public List<Factura> buscarFacturaOuterJoinRight(Integer cantidad);
 
 	//Deber 27
 

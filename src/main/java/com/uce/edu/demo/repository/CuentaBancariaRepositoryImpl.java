@@ -38,4 +38,11 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository {
 		return myQuery.getSingleResult();
 	}
 
+	@Override
+	@Transactional(value = TxType.MANDATORY)
+	public void insertar(CuentaBancaria c) {
+		// TODO Auto-generated method stub
+		this.entityManager.persist(c);
+	}
+
 }

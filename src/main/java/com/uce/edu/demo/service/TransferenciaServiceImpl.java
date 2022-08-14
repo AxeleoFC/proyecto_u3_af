@@ -68,4 +68,24 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		this.transferenciaRepo.insertar(trans);
 	}
 
+	@Override
+	public void realizarTransferenciaOtroBanco(String numeroOrigen, String numeroDestino, BigDecimal monto) {
+		// TODO Auto-generated method stub
+		CuentaBancaria ctaOrigen=this.cuentaBancariaRepo.buscarCuenta(numeroOrigen);
+		CuentaBancaria ctaDestino=this.cuentaBancariaRepo.buscarCuenta(numeroDestino);
+		
+		ctaOrigen.setSaldo(ctaOrigen.getSaldo().subtract(monto).subtract(new BigDecimal(0.5)));
+		this.cuentaBancariaRepo.actualizar(ctaOrigen);
+		
+		ctaDestino.setSaldo(ctaDestino.getSaldo().add(monto).subtract(new BigDecimal(0.5)));
+		this.cuentaBancariaRepo.actualizar(ctaDestino);
+		
+		Transferencia trans=new Transferencia();
+		trans.setFecha(LocalDateTime.now());
+		trans.setMonto(monto);
+		trans.setCuentaOrigen(ctaOrigen);
+		trans.setCuentaDestino(ctaDestino);
+		this.transferenciaRepo.insertar(trans);
+	}
+
 }

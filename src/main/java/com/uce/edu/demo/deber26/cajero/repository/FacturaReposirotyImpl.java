@@ -32,7 +32,7 @@ public class FacturaReposirotyImpl implements IFacturaRepository {
 	}
 
 	@Override
-	public List<Factura> buacarFacturaInnerJoin(Integer cantidad) {
+	public List<Factura> buscarFacturaInnerJoin(Integer cantidad) {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f INNER JOIN f.detalles d WHERE d.cantidad >= :datoCantidad", Factura.class);
 		myQuery.setParameter("datoCantidad", cantidad);
@@ -48,14 +48,14 @@ public class FacturaReposirotyImpl implements IFacturaRepository {
 	}
 
 	@Override
-	public List<Factura> buacarFacturaInnerJoin() {
+	public List<Factura> buscarFacturaInnerJoin() {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f INNER JOIN f.detalles d", Factura.class);
 		return myQuery.getResultList();
 	}
 
 	@Override
-	public List<Factura> buacarFacturaOuterJoinLeft(Integer cantidad) {
+	public List<Factura> buscarFacturaOuterJoinLeft(Integer cantidad) {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f LEFT JOIN f.detalles d WHERE d.cantidad >= :datoCantidad", Factura.class);
 		myQuery.setParameter("datoCantidad", cantidad);
@@ -63,14 +63,14 @@ public class FacturaReposirotyImpl implements IFacturaRepository {
 	}
 
 	@Override
-	public List<Factura> buacarFacturaOuterJoinLeft() {
+	public List<Factura> buscarFacturaOuterJoinLeft() {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f LEFT JOIN f.detalles d", Factura.class);
 		return myQuery.getResultList();
 	}
 
 	@Override
-	public List<Factura> buacarFacturaOuterJoinRight(Integer cantidad) {
+	public List<Factura> buscarFacturaOuterJoinRight(Integer cantidad) {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f RIGHT JOIN f.detalles d WHERE d.cantidad >= :datoCantidad", Factura.class);
 		myQuery.setParameter("datoCantidad", cantidad);
@@ -78,7 +78,7 @@ public class FacturaReposirotyImpl implements IFacturaRepository {
 	}
 
 	@Override
-	public List<Factura> buacarFacturaJoinWhere(Integer cantidad) {
+	public List<Factura> buscarFacturaJoinWhere(Integer cantidad) {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery=this.entityManager.createQuery("SELECT f FROM Factura f, Detalle d WHERE f=d.factura AND d.cantidad >= :datoCantidad", Factura.class);
 		myQuery.setParameter("datoCantidad", cantidad);
@@ -86,7 +86,7 @@ public class FacturaReposirotyImpl implements IFacturaRepository {
 	}
 
 	@Override
-	public List<Factura> buacarFacturaJoinFetch(Integer cantidad) {
+	public List<Factura> buscarFacturaJoinFetch(Integer cantidad) {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> myQuery=this.entityManager.createQuery("SELECT f FROM Factura f JOIN FETCH f.detalles d WHERE d.cantidad >= :datoCantidad", Factura.class);
 		myQuery.setParameter("datoCantidad", cantidad);
