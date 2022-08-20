@@ -1,5 +1,6 @@
 package com.uce.edu.demo.deber26.cajero.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,33 @@ public class FacturaServiceImpl implements IFacturaService {
 	private IFacturaRepository facturaRepo;
 	
 	@Override
-	public void ingresar(Factura f) {
-		// TODO Auto-generated method stub
-		this.facturaRepo.ingresar(f);
+	public void insertar(Factura factura) {
+		this.facturaRepo.insertar(factura);
 	}
 
 	@Override
-	public Factura consultar(Integer id) {
-		// TODO Auto-generated method stub
-		return this.facturaRepo.consultar(id);
+	public void actualizar(Factura factura) {
+		this.facturaRepo.actualizar(factura);
+	}
+
+	@Override
+	public void eliminar(Integer id) {
+		this.facturaRepo.eliminar(id);
+	}
+
+	@Override
+	public int actualizarFecha(LocalDateTime fecha) {
+		return this.facturaRepo.actualizarFecha(fecha);
+	}
+
+	@Override
+	public Factura buscar(Integer id) {
+		return this.facturaRepo.buscar(id);
+	}
+
+	@Override
+	public Factura buscarPorNumero(String numero) {
+		return this.facturaRepo.buscarPorNumero(numero);
 	}
 
 	@Override
@@ -65,6 +84,18 @@ public class FacturaServiceImpl implements IFacturaService {
 	public List<Factura> buacarFacturaJoinFetch(Integer cantidad) {
 		// TODO Auto-generated method stub
 		return this.facturaRepo.buscarFacturaJoinFetch(cantidad);
+	}
+
+	@Override
+	public void ingresar(Factura f) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Factura consultar(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -22,14 +22,18 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	@Transactional(value = TxType.MANDATORY)
-	public void actualizar(CuentaBancaria cuentaBancaria) {
+	//@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRES_NEW)
+	public void actualizar(CuentaBancaria cuentaBancaria) {//Begin
 		// TODO Auto-generated method stub
 		this.entityManager.merge(cuentaBancaria);
-	}
+		
+		// Excepcion
+		// throw new RuntimeException();
+	}//Commit
 
 	@Override
-	@Transactional(value = TxType.NOT_SUPPORTED)
+	//@Transactional(value = TxType.NOT_SUPPORTED)
 	public CuentaBancaria buscarCuenta(String numero) {
 		// TODO Auto-generated method stub
 		LOG.info("Transaccion activa:"+TransactionSynchronizationManager.isActualTransactionActive());
