@@ -1,5 +1,6 @@
 package com.uce.edu.demo.deber26.cajero.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.uce.edu.demo.deber26.cajero.repository.modelo.Factura;
@@ -23,6 +24,16 @@ public interface IFacturaRepository {
 	public List<Factura> buscarFacturaJoinFetch(Integer cantidad);
 	
 	//Trabajo Grupal
-	
+	public void insertar(Factura factura);
+
+	public void actualizar(Factura factura);
+
+	public void eliminar(Integer id);
+
+	public int actualizarFecha(LocalDateTime fecha);
+
+	public Factura buscar(Integer id);
+
+	public Factura buscarPorNumero(String numero);
 	
 }
