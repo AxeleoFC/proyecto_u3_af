@@ -24,11 +24,12 @@ public class ICuentaBancariaServiceImpl implements ICuentaBancariaService {
 			CuentaBancaria cuenta=new CuentaBancaria();
 			cuenta.setNumero(numero);
 			cuenta.setTipo(tipo);
+			cuenta.setSaldo(monto);
 			this.cuentaRepo.insertar(cuenta);
 			
-			CuentaBancaria cuentaDepositar=cuenta;
-			cuentaDepositar.setSaldo(monto);
-			this.cuentaRepo.actualizar(cuentaDepositar);
+			CuentaBancaria nuevaCuenta=cuenta;
+			nuevaCuenta.setSaldo(monto);
+			this.cuentaRepo.actualizar(nuevaCuenta);
 			return true;
 			
 		}catch (Exception e) {

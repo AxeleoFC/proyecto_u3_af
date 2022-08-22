@@ -1,4 +1,4 @@
-package com.uce.edu.demo.deber26.cajero.repository.modelo;
+package com.uce.edu.demo.tarea31.repository.modelo;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,13 +13,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "producto")
+@Table(name = "producto_deber31")
 public class Producto {
 	
 	@Id
 	@Column(name = "prod_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prod_id_seq")
-	@SequenceGenerator(name = "prod_id_seq", sequenceName = "prod_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produ_id_seq")
+	@SequenceGenerator(name = "produ_id_seq", sequenceName = "produ_id_seq", allocationSize = 1)
 	private Integer id;
 	
 	@Column(name = "prod_nombre")

@@ -1,4 +1,4 @@
-package com.uce.edu.demo.deber26.cajero.repository.modelo;
+package com.uce.edu.demo.tarea31.repository.modelo;
 
 import java.math.BigDecimal;
 
@@ -13,13 +13,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "detalle")
+@Table(name = "detalle_deber31")
 public class Detalle {
 	
 	@Id
 	@Column(name = "deta_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deta_id_seq")
-	@SequenceGenerator(name = "deta_id_seq", sequenceName = "deta_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detal_id_seq")
+	@SequenceGenerator(name = "detal_id_seq", sequenceName = "detal_id_seq", allocationSize = 1)
 	private Integer id;
 	
 	@Column(name = "deta_cantidad")
@@ -31,6 +31,10 @@ public class Detalle {
 	@ManyToOne
 	@JoinColumn(name = "deta_fact_id")
 	private Factura factura;
+	
+	@ManyToOne
+	@JoinColumn(name = "deta_factE_id")
+	private FacturaElectronica facturaE;
 	
 	@ManyToOne
 	@JoinColumn(name = "deta_prod_id")
@@ -82,4 +86,13 @@ public class Detalle {
 		this.producto = producto;
 	}
 
+	public FacturaElectronica getFacturaE() {
+		return facturaE;
+	}
+
+	public void setFacturaE(FacturaElectronica facturaE) {
+		this.facturaE = facturaE;
+	}
+
+	
 }

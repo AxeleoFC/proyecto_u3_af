@@ -24,7 +24,7 @@ class ICuentaBancariaServiceTest {
 
 	@Test
 	void testCrearCuenta() {
-		assertThat(ctaService.crearCuenta("Ahorros", "852966", new BigDecimal(50))).isTrue();
+		assertThat(ctaService.crearCuenta("Ahorros", "85452966", new BigDecimal(50))).isTrue();
 	}
 
 	@Test

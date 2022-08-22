@@ -1,4 +1,4 @@
-package com.uce.edu.demo.deber26.cajero.repository.modelo;
+package com.uce.edu.demo.tarea31.repository.modelo;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,17 +13,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "factura")
+@Table(name = "factura_deber31")
 public class Factura {
 	
 	@Id
 	@Column(name = "fact_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fact_id_seq")
-	@SequenceGenerator(name = "fact_id_seq", sequenceName = "fact_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "factu_id_seq")
+	@SequenceGenerator(name = "factu_id_seq", sequenceName = "factu_id_seq", allocationSize = 1)
 	private Integer id;
 	
 	@Column(name = "fact_fecha")
@@ -35,6 +36,9 @@ public class Factura {
 	@ManyToOne
 	@JoinColumn(name = "fact_clie_id")
 	private Cliente cliente;
+	
+	@OneToOne(mappedBy = "facturaOriginal", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private FacturaElectronica facturaElectronica;
 	
 	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Detalle> detalles;

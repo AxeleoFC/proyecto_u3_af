@@ -1,6 +1,7 @@
 package com.uce.edu.demo;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,11 +11,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.deber26.cajero.repository.modelo.Factura;
-import com.uce.edu.demo.deber26.cajero.service.IFacturaService;
-import com.uce.edu.demo.repository.modelo.Hotel;
-import com.uce.edu.demo.service.IHotelService;
 import com.uce.edu.demo.service.ITransferenciaService;
+import com.uce.edu.demo.tarea31.repository.modelo.Detalle;
+import com.uce.edu.demo.tarea31.service.IFacturaElectricaService;
 
 @SpringBootApplication
 public class ProyectoU3AfApplication implements CommandLineRunner{
@@ -22,7 +21,7 @@ public class ProyectoU3AfApplication implements CommandLineRunner{
 	private static final Logger LOG = LogManager.getLogger(ProyectoU3AfApplication.class.getName());
 	
 	@Autowired
-	private ITransferenciaService transferenciaService;
+	private IFacturaElectricaService factElectService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU3AfApplication.class, args);
@@ -31,8 +30,10 @@ public class ProyectoU3AfApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-		this.transferenciaService.realizarTransferencia("123", "456", new BigDecimal(50));
+		Detalle d1=new Detalle();
+		List<Detalle> de=new ArrayList<>();
+		de.add(d1);
+		this.factElectService.generarFacturaSRI("1752310126", "1", de);
 		
 	}
 
