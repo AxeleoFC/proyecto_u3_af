@@ -1,6 +1,5 @@
 package com.uce.edu.demo;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.service.ITransferenciaService;
 import com.uce.edu.demo.tarea31.repository.modelo.Detalle;
 import com.uce.edu.demo.tarea31.service.IFacturaElectricaService;
 
