@@ -26,7 +26,7 @@ public class FacturaElectronica {
 	@SequenceGenerator(name = "factuE_id_seq", sequenceName = "factuE_id_seq", allocationSize = 1)
 	private Integer id;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="factuE_id_fact")
 	private Factura facturaOriginal;
 	
@@ -36,7 +36,7 @@ public class FacturaElectronica {
 	@Column(name = "factE_monto")
 	private BigDecimal monto;
 	
-	@OneToMany(mappedBy = "facturaE", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "facturaE",fetch = FetchType.LAZY)
 	private List<Detalle> detalles;
 
 	@Override

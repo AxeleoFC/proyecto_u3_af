@@ -1,7 +1,9 @@
 package com.uce.edu.demo.tarea31.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.uce.edu.demo.tarea31.repository.modelo.Detalle;
 import com.uce.edu.demo.tarea31.repository.modelo.Factura;
 
 public interface IFacturaService {
@@ -15,6 +17,8 @@ public interface IFacturaService {
 	public Factura buscar(Integer id);
 	
 	public Factura buscarPorNumero(String numero);
+	
+	public void crearFactura(String cedula, String numero, List<Detalle> detalles);
 	
 
 }

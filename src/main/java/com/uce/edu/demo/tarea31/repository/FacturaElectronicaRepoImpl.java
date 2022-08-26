@@ -20,8 +20,6 @@ public class FacturaElectronicaRepoImpl implements IFacturaElectronicaRepo{
 	public void ingresar(FacturaElectronica f) {
 		// TODO Auto-generated method stub
 		this.entityManager.persist(f);
-		
-		throw new RuntimeException();
 	}
 
 }

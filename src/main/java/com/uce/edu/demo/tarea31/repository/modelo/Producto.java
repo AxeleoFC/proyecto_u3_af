@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,12 +29,16 @@ public class Producto {
 	@Column(name = "prod_precio")
 	private BigDecimal precio;
 	
-	@OneToMany(mappedBy = "producto")
+	@Column(name = "prod_invetario")
+	private Integer invetario;
+	
+	@OneToMany(mappedBy = "producto",fetch = FetchType.LAZY)
 	private List<Detalle> detalles;
 
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", invetario=" + invetario
+				+ ", detalles=" + detalles + "]";
 	}
 
 	//SET y GET
@@ -67,6 +72,14 @@ public class Producto {
 
 	public void setDetalles(List<Detalle> detalles) {
 		this.detalles = detalles;
+	}
+
+	public Integer getInvetario() {
+		return invetario;
+	}
+
+	public void setInvetario(Integer invetario) {
+		this.invetario = invetario;
 	}
 
 }

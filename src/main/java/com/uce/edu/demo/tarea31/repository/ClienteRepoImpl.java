@@ -17,10 +17,10 @@ public class ClienteRepoImpl implements IClienteRepo {
 	private EntityManager entityManager;
 
 	@Override
-	@Transactional(value = TxType.REQUIRES_NEW)
+	@Transactional(value = TxType.SUPPORTS)
 	public Cliente buscarCedula(String cedula) {
 		// TODO Auto-generated method stub
-		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.cedula > :datoCedula",
+		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.cedula = :datoCedula",
 				Cliente.class);
 		myQuery.setParameter("datoCedula", cedula);
 		return myQuery.getSingleResult();

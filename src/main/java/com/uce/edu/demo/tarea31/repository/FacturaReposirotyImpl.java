@@ -41,7 +41,7 @@ public class FacturaReposirotyImpl implements IFacturaRepo {
 	@Override
 	@Transactional(value = TxType.REQUIRES_NEW)
 	public Factura buscarPorNumero(String numero) {
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f WHERE f.numero > :numero",
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f WHERE f.numero = :numero",
 				Factura.class);
 		myQuery.setParameter("numero", numero);
 		return myQuery.getSingleResult();
