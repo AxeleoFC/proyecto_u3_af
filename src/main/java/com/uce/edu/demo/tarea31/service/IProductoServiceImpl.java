@@ -25,8 +25,9 @@ public class IProductoServiceImpl implements IProductoService {
 	}
 
 	@Override
-	public Producto buscarCedula(String nombre) {
+	public Producto buscarNombre(String nombre) {
 		// TODO Auto-generated method stub
+		System.out.println("Service");
 		return this.producRepo.buscarProducto(nombre);
 	}
 }
