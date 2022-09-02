@@ -1,6 +1,7 @@
-package com.uce.edu.demo.tarea33;
+package com.uce.edu.demo.deber34;
 
 import com.uce.edu.demo.tarea31.repository.modelo.Producto;
+import com.uce.edu.demo.tarea33.*;
 
 public class ProductoMetodosHighOrder {
 
