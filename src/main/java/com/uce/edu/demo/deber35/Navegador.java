@@ -20,7 +20,7 @@ public class Navegador extends Thread{
 	public void procesar(Ventana ventana) {
 		long teimpoInicial=System.currentTimeMillis();
 		System.out.println("Nombre del hilo procesar:"+Thread.currentThread().getName());
-		System.out.println("Procesando cajero: "+ventana.getNombre());
+		System.out.println("Procesando ventana: "+ventana.getNombre());
 		for(String pagina : ventana.getPaginaPestanias()) {
 			atenderCliente(pagina);
 		}

@@ -1,78 +1,62 @@
 package com.uce.edu.demo.deber34;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.uce.edu.demo.ProyectoU3AfApplication;
-import com.uce.edu.demo.tarea31.repository.modelo.Producto;
-import com.uce.edu.demo.tarea31.service.IProductoService;
 import com.uce.edu.demo.tarea33.MainTarea33;
-import com.uce.edu.demo.tarea33.ProductoMetodosHighOrder;
 
 public class MainDeber34 {
 	
-	@Autowired
-	private IProductoService productoService;
+	public static boolean prueba(Integer numero) {
+		return numero>=8;
+	}
+	
+	public static void imprimir(String cadena) {
+		LOG.info("Impresion: "+cadena);
+	}
 	
 	public void ejecutar() {
-		ProductoMetodosHighOrder metodosHO = new ProductoMetodosHighOrder();
-
-		//SUPPLIER
 		
-		//Metodos High Order
-		String valorHO1 = metodosHO.metodoSupplier(() -> {
-			return "Chocolate".toString();
-		});
-		// JAVA
+		// JAVA Function
 		LOG.info("JAVA Supplier ");
 		// .limit da el total de retornos que quramos en el forEach
-		Stream<String> test = Stream.generate(() -> "Axel test").limit(7);
-		test.forEach(cadena -> LOG.info("JAVA Supplier " + cadena));
+		
+		Stream<String> test = Stream.generate(() -> {
+			double num=(Math.random()*10)/100;
+			return "Numero random "+num;
+		}).limit(10);
+		test.forEach(cadena -> imprimir(cadena));
 
 		//-------------------------------------------------------------------------------
 		//CONSUMER
 		
-		//Metodos High Order
-		metodosHO.metodoConsumer(cadena ->{
-			Producto p=new Producto();
-			p.setNombre(cadena);
-			System.out.println("Consumer High Order: "+p.getNombre());
-		}, "Chocolate");
-				
+		// JAVA Function
+		LOG.info("JAVA Consumer");
+		List<Integer> listaNumeros = Arrays.asList(1, 2, 3, 3, 2, 16, 8, 5, 9);
+		listaNumeros.stream().sorted((x,y)->x.compareTo(y)).forEach(t -> LOG.info("JAVA Consumer " + t));
 		//-------------------------------------------------------------------------------
 		//PREDICATE
 		
-		//Metodos High Order
-		boolean resultado =  metodosHO.metodoPredicate(cadena -> {
-			try {
-				Producto p= productoService.buscarNombre(cadena);
-				if(p!=null) {
-					return true;
-				}else {
-					return false;
-				}
-				
-			}catch (Exception e) {
-				// TODO: handle exception
-				return false;
-			}
-		}, "Chocolate");
-		LOG.info("High Order Predicate Lamda: "+resultado);
-		
+		// JAVA Predicate
+		LOG.info("JAVA Predicate ");
+		Stream<Integer> nuevaLista = listaNumeros.stream().sorted((x,y)->x.compareTo(y)).filter(numero -> prueba(numero));
+		nuevaLista.forEach(t -> LOG.info("JAVA Predicate " + t));
 		//-------------------------------------------------------------------------------
 		//FUNCTION
 		
-		//Metodos High Order
-		Producto valorFinalHO=metodosHO.metodoFunction(cadena -> {
-			Producto p=new Producto();
-			p.setNombre(cadena);
-			return p;
-		}, "Chocolate");
-		LOG.info("High Order Function Lamda: "+valorFinalHO);
-		
+		// JAVA Function
+		LOG.info("JAVA Function");
+		Stream<String> listaCambiada = listaNumeros.stream().map(numeroLista -> {
+			Integer valor = numeroLista + 1;
+			String cadena = "num: " + valor.toString();
+			return cadena;
+		});
+		listaCambiada.forEach(valor -> imprimir(valor));
 		
 	}
 	
@@ -80,7 +64,7 @@ public class MainDeber34 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MainTarea33 m=new MainTarea33();
+		MainDeber34 m=new MainDeber34();
 		m.ejecutar();
 	}
 
